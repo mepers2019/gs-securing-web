@@ -1,0 +1,21 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: bogije-gs-securing-web
+    chart: bogije-gs-securing-web-0.0.1
+    heritage: Tiller
+    release: bogije-gs-securing-web
+  name: bogije-gs-securing-web
+  namespace: __PROJECT__
+spec:
+  type: "ClusterIP"
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: bogije-gs-securing-web
+    release: bogije-gs-securing-web

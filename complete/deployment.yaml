@@ -1,0 +1,42 @@
+---
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  labels:
+    app: bogije-gs-securing-web
+    chart: bogije-gs-securing-web-0.0.1
+    heritage: Tiller
+    release: bogije-gs-securing-web
+  name: bogije-gs-securing-web
+  namespace: __PROJECT__
+spec:
+  replicas: 1
+  selector:
+    deploymentconfig: bogije-gs-securing-web
+  template:
+    metadata:
+      labels:
+        app: bogije-gs-securing-web
+        release: bogije-gs-securing-web
+        deploymentconfig: bogije-gs-securing-web
+    spec:
+      imagePullSecrets:
+      - name: docker-registry-credentials
+      containers:
+        - name: bogije-gs-securing-web
+          image: "__IMAGE_TAG__"
+          imagePullPolicy: "Always"
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            tcpSocket:
+              port: http
+            initialDelaySeconds: 600
+            timeoutSeconds: 60
+          readinessProbe:
+            tcpSocket:
+              port: http
+          resources:
+            {}

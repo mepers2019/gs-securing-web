@@ -1,0 +1,23 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  creationTimestamp: null
+  labels:
+    app: bogije-gs-securing-web
+    chart: bogije-gs-securing-web
+    heritage: Tiller
+    release: bogije-gs-securing-web
+  name: bogije-gs-securing-web
+  namespace: __PROJECT__
+spec:
+  host: bogije-gs-securing-web-__PROJECT__.apps.ubuntu-us-west-1.perspectatechdemos.com
+  port:
+    targetPort: http
+  subdomain: ""
+  to:
+    kind: Service
+    name: bogije-gs-securing-web
+    weight: 100
+  wildcardPolicy: None
+status:
+  ingress: null
