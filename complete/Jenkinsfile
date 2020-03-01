@@ -38,8 +38,6 @@ spec:
     volumeMounts:
       - name: maven-m2-repository
         mountPath: /root/.m2/repository
-      - name: jenkins-agent-maven-settings
-        mountPath: /root/.m2/settings.xml
   - name: selenium
     image: selenium/standalone-chrome:3.141.59
   - name: zap
@@ -57,8 +55,8 @@ spec:
     persistentVolumeClaim:
       claimName: jenkins-agent
   - name: config-volume
-      configMap:
-        name: jenkins-agent-maven-settings
+    configMap:
+      name: jenkins-agent-maven-settings
   - name: jenkins-docker-cfg
     projected:
       sources:
