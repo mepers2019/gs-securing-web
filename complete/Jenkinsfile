@@ -38,6 +38,8 @@ spec:
     volumeMounts:
       - name: maven-m2-repository
         mountPath: /root/.m2/repository
+      - name: jenkins-agent-maven-settings
+        mountPath: /root/.m2/settings.xml
   - name: selenium
     image: selenium/standalone-chrome:3.141.59
   - name: zap
@@ -54,6 +56,9 @@ spec:
   - name: maven-m2-repository
     persistentVolumeClaim:
       claimName: jenkins-agent
+  - name: config-volume
+      configMap:
+        name: jenkins-agent-maven-settings
   - name: jenkins-docker-cfg
     projected:
       sources:
@@ -70,20 +75,20 @@ spec:
     MANAGEMENT_NAMESPACE = "mgt"
     GITHUB_GROUP = "bogije"
     GITHUB_PROJECT = "gs-securing-web"
-    SONARQUBE_TOKEN = "f0e07a8dd7563d26b8c97341fe49ea2532e0ee99"
-    DEVCLOUD_REGISTRY_ADDRESS = "docker-nexus-mgt-mac-feb-29-us-east-2.perspectatechdemos.com"
+    SONARQUBE_TOKEN = "c1e658c9e4df9433cf0d0e55f90bb8eb420c7f0d"
+    DEVCLOUD_REGISTRY_ADDRESS = "docker-nexus-mgt-ubuntu-us-west-1.perspectatechdemos.com"
     APPLICATION_MAJOR_VERSION = "1"
     APPLICATION_MINOR_VERSION = "0"
     DEVCLOUD_DOCKER_TAG = "${DEVCLOUD_REGISTRY_ADDRESS}/${GITHUB_PROJECT}:${APPLICATION_MAJOR_VERSION}.${APPLICATION_MINOR_VERSION}.${env.BUILD_NUMBER}"
     DEVCLOUD_BRANCH_TAG = "master"
     MATTERMOST_CHANNEL = "gs-securing-web"
-    MATTERMOST_WEBHOOK = "https://mattermost-mgt-mac-feb-29-us-east-2.perspectatechdemos.com/hooks/6np46dbqxtnsiraegr6yyjzofo"
-    ARTIFACTORY_URL = "https://artifactory-mgt-mac-feb-29-us-east-2.perspectatechdemos.com"
-    SONARQUBE_URL = "https://sonarqube-mgt-mac-feb-29-us-east-2.perspectatechdemos.com"
+    MATTERMOST_WEBHOOK = "https://mattermost-mgt-ubuntu-us-west-1.perspectatechdemos.com/hooks/wg7cu5uwofb698r9yjb8woaeew"
+    ARTIFACTORY_URL = "https://artifactory-mgt-ubuntu-us-west-1.perspectatechdemos.com"
+    SONARQUBE_URL = "https://sonarqube-mgt-ubuntu-us-west-1.perspectatechdemos.com"
     GITHUB_URL = "https://github.com"
-    DEV_DEPLOYMENT_URL = "http://bogije-gs-securing-web-dev.apps.mac-feb-29-us-east-2.perspectatechdemos.com"
-    TEST_DEPLOYMENT_URL = "http://bogije-gs-securing-web-test.apps.mac-feb-29-us-east-2.perspectatechdemos.com"
-    PROD_DEPLOYMENT_URL = "http://bogije-gs-securing-web-prod.apps.mac-feb-29-us-east-2.perspectatechdemos.com"
+    DEV_DEPLOYMENT_URL = "http://bogije-gs-securing-web-dev.apps.ubuntu-us-west-1.perspectatechdemos.com"
+    TEST_DEPLOYMENT_URL = "http://bogije-gs-securing-web-test.apps.ubuntu-us-west-1.perspectatechdemos.com"
+    PROD_DEPLOYMENT_URL = "http://bogije-gs-securing-web-prod.apps.ubuntu-us-west-1.perspectatechdemos.com"
   }
 
   // triggers { pollSCM '* * * * *' }
