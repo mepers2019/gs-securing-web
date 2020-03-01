@@ -10,7 +10,7 @@ metadata:
   name: bogije-gs-securing-web
   namespace: __PROJECT__
 spec:
-  host: bogije-gs-securing-web-__PROJECT__.apps.ubuntu-us-west-1.perspectatechdemos.com
+  host: bogije-gs-securing-web-__PROJECT__.apps.mac-feb-29-us-east-2.perspectatechdemos.com
   port:
     targetPort: http
   subdomain: ""
